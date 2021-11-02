@@ -13,7 +13,7 @@ function initializeLiff(defaultLiffId) {
           const stringifiedResult = result.value;
           liff.sendMessages([{
               'type': 'text',
-              'text': stringifiedResult
+              'text': stringifiedResult //aaa
           }]).then(() => {
               liff.closeWindow();
           }).catch((error) => {
