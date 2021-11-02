@@ -1,12 +1,12 @@
 window.onload = function() {
-  //const defaultLiffId = "1655857005-W2R7Ee7o";
-  initializeLiff();
+  const defaultLiffId = "1655857005-W2R7Ee7o";
+  initializeLiff(defaultLiffId);
 };
 
-function initializeLiff() {
+function initializeLiff(defaultLiffId) {
   liff
   .init({
-      liffId: process.env.MY_LIFF_ID
+      liffId: defaultLiffId
   })
   .then(() => {
       liff.scanCodeV2().then(result => {
