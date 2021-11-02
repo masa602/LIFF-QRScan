@@ -1,29 +1,12 @@
-window.onload = function() {
-  const defaultLiffId = "1655857005-W2R7Ee7o";
-  initializeLiff(defaultLiffId);
-};
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 5000;
+const myLiffId = process.env.MY_LIFF_ID;
 
-function initializeLiff(myLiffId) {
-  liff
-  .init({
-      liffId: myLiffId
-  })
-  .then(() => {
-      liff.scanCodeV2().then(result => {
-          const stringifiedResult = result.value;
-          liff.sendMessages([{
-              'type': 'text',
-              'text': stringifiedResult
-          }]).then(() => {
-              liff.closeWindow();
-          }).catch((error) => {
-              window.alert('Error sending message: ' + error);
-          });
-      }).catch(err => {
-          window.alert('scanCode failed!');
-      });
-  })
-  .catch((err) => {
-      window.alert('Something went wrong with LIFF initialization.');
-  });
-}
+app.use(express.static('public'));
+
+app.get('/send-id', function(req, res) {
+    res.json({id: myLiffId});
+});
+
+app.listen(port, () => console.log(`app listening on port ${port}!`));
