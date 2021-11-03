@@ -11,6 +11,7 @@ function initializeLiff(defaultLiffId) {
   .then(() => {
       liff.scanCodeV2().then(result => {
           const stringifiedResult = result.value;
+          if(stringifiedResult.length > 58) stringifiedResult = stringifiedResult.substring(58)
           liff.sendMessages([{
               'type': 'text',
               'text': stringifiedResult
